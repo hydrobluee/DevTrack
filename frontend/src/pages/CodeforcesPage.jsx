@@ -154,7 +154,7 @@ const CodeforcesPage = () => {
   if (profileLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-16 h-16 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -182,7 +182,7 @@ const CodeforcesPage = () => {
             <>
               {loading ? (
                 <div className="flex justify-center items-center py-12">
-                  <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-16 h-16 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
                 </div>
               ) : fetchError ? (
                 <motion.div
@@ -194,7 +194,7 @@ const CodeforcesPage = () => {
                   <p className="text-red-300">{fetchError}</p>
                   <button
                     onClick={() => window.location.reload()}
-                    className="mt-4 px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 transition"
+                    className="mt-4 px-4 py-2 bg-green-600 rounded hover:bg-green-700 transition"
                   >
                     Retry
                   </button>
@@ -215,22 +215,22 @@ const CodeforcesPage = () => {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="bg-gray-800 rounded-xl shadow-lg border border-gray-700 p-6"
                   >
-                    <h2 className="text-xl font-bold text-blue-400 mb-4">Performance Overview</h2>
+                    <h2 className="text-xl font-bold text-green-400 mb-4">Performance Overview</h2>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       <div className="bg-gray-700/50 p-4 rounded-lg">
-                        <h3 className="text-blue-300 text-sm">Current Rating</h3>
+                        <h3 className="text-green-300 text-sm">Current Rating</h3>
                         <p className="text-2xl font-bold">{userData.rating || '-'}</p>
                       </div>
                       <div className="bg-gray-700/50 p-4 rounded-lg">
-                        <h3 className="text-blue-300 text-sm">Max Rating</h3>
+                        <h3 className="text-green-300 text-sm">Max Rating</h3>
                         <p className="text-2xl font-bold">{userData.maxRating || '-'}</p>
                       </div>
                       <div className="bg-gray-700/50 p-4 rounded-lg">
-                        <h3 className="text-blue-300 text-sm">Contests</h3>
+                        <h3 className="text-green-300 text-sm">Contests</h3>
                         <p className="text-2xl font-bold">{userData.contests || 0}</p>
                       </div>
                       <div className="bg-gray-700/50 p-4 rounded-lg">
-                        <h3 className="text-blue-300 text-sm">Problems Solved</h3>
+                        <h3 className="text-green-300 text-sm">Problems Solved</h3>
                         <p className="text-2xl font-bold">{userData.totalProblemsSolved || 0}</p>
                       </div>
                     </div>
@@ -288,7 +288,7 @@ const CodeforcesPage = () => {
               <h2 className="text-2xl font-bold mb-2">No Codeforces Username Found</h2>
               <p className="text-gray-300 mb-6">Please add your Codeforces username to your profile to view statistics.</p>
               <button
-                className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors w-full max-w-xs mx-auto"
+                className="px-6 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors w-full max-w-xs mx-auto"
                 onClick={() => window.location.href = '/profile'}
               >
                 Go to Profile

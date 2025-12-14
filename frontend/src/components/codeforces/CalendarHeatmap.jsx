@@ -33,7 +33,7 @@ const CalendarHeatmap = ({ submissionCalendar }) => {
       animate={{ opacity: 1, y: 0 }}
       className="bg-gray-800 rounded-xl shadow-lg border border-gray-700 p-6 relative"
     >
-      <h3 className="text-xl font-semibold mb-6 text-blue-400">6-Month Activity</h3>
+      <h3 className="text-xl font-semibold mb-6 text-green-400">6-Month Activity</h3>
       
       <div className="flex gap-1 mb-2 ml-8">
         {months.map((month, idx) => (
@@ -77,8 +77,8 @@ const CalendarHeatmap = ({ submissionCalendar }) => {
                       data-tooltip-content={`${format(day, 'MMM dd, yyyy')} - ${count} submission${count !== 1 ? 's' : ''}`}
                       className={`h-4 w-4 rounded-sm transition-all ${
                         count === 0 ? 'bg-gray-700' : 
-                        count < 3 ? 'bg-blue-400' : 
-                        count < 5 ? 'bg-blue-500' : 'bg-blue-600'
+                        count < 3 ? 'bg-green-400' : 
+                        count < 5 ? 'bg-green-500' : 'bg-green-600'
                       } hover:scale-110 cursor-pointer`}
                     />
                   );

@@ -6,7 +6,7 @@ const RecentContests = ({ contests=[] }) => (
     animate={{ opacity: 1 }}
     className="bg-gray-800 rounded-xl shadow-lg border border-gray-700 p-6"
   >
-    <h3 className="text-xl font-semibold text-blue-400 mb-4">Recent Contests</h3>
+    <h3 className="text-xl font-semibold text-green-400 mb-4">Recent Contests</h3>
     <div className="space-y-3">
       {contests.map((contest, idx) => (
         <motion.div

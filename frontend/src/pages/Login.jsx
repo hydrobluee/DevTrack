@@ -100,7 +100,7 @@ export default function Login() {
         <div className="text-center">
           <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5 }}>
             <a href="/" className="inline-flex items-center">
-              <span className="text-3xl font-bold text-blue-600 dark:text-blue-400">CPier</span>
+              <span className="text-3xl font-bold text-green-600 dark:text-green-400">DevTrack</span>
             </a>
           </motion.div>
           <motion.h2 className="mt-6 text-3xl font-extrabold text-gray-900 dark:text-white" initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 }}>
@@ -112,7 +112,7 @@ export default function Login() {
             ) : (
               <>
                 Or{' '}
-                <a href="/signup" className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
+                <a href="/signup" className="font-medium text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300">
                   create a new account
                 </a>
               </>
@@ -128,7 +128,7 @@ export default function Login() {
               </motion.div>
             )}
             {(message || success) && (
-              <motion.div className={`mb-4 ${success ? 'bg-green-50 dark:bg-green-900/30 border-green-200 dark:border-green-800 text-green-700 dark:text-green-300' : 'bg-blue-50 dark:bg-blue-900/30 border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300'} border px-4 py-3 rounded-md`} initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
+              <motion.div className={`mb-4 ${success ? 'bg-green-50 dark:bg-green-900/30 border-green-200 dark:border-green-800 text-green-700 dark:text-green-300' : 'bg-green-50 dark:bg-green-900/30 border-green-200 dark:border-green-800 text-green-700 dark:text-green-300'} border px-4 py-3 rounded-md`} initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
                 {success || message}
               </motion.div>
             )}
@@ -146,7 +146,7 @@ export default function Login() {
                         setResetSent(false);
                         setResetEmail('');
                       }}
-                      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
+                      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200"
                     >
                       Return to login
                     </button>
@@ -167,7 +167,7 @@ export default function Login() {
                           required
                           value={resetEmail}
                           onChange={(e) => setResetEmail(e.target.value)}
-                          className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white sm:text-sm transition-colors duration-200"
+                          className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 dark:text-white sm:text-sm transition-colors duration-200"
                           placeholder="you@example.com"
                         />
                       </div>
@@ -189,7 +189,7 @@ export default function Login() {
                       <button
                         type="submit"
                         disabled={isLoading}
-                        className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
+                        className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-Green-600 hover:bg-Green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-Green-500 disabled:opacity-50"
                       >
                         {isLoading ? 'Sending...' : 'Send Reset Link'}
                       </button>
@@ -238,7 +238,7 @@ export default function Login() {
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white sm:text-sm transition-colors duration-200"
+                        className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-Green-500 focus:border-Green-500 dark:text-white sm:text-sm transition-colors duration-200"
                         placeholder="you@example.com"
                       />
                     </div>
@@ -258,7 +258,7 @@ export default function Login() {
                         required
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="block w-full pl-10 pr-10 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white sm:text-sm transition-colors duration-200"
+                        className="block w-full pl-10 pr-10 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-Green-500 focus:border-Green-500 dark:text-white sm:text-sm transition-colors duration-200"
                         placeholder="••••••••"
                       />
                       <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
@@ -278,7 +278,7 @@ export default function Login() {
                       <input
                         id="remember-me"
                         type="checkbox"
-                        className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 dark:border-gray-600 rounded"
+                        className="h-4 w-4 text-Green-600 focus:ring-Green-500 border-gray-300 dark:border-gray-600 rounded"
                       />
                       <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
                         Remember me
@@ -293,7 +293,7 @@ export default function Login() {
                           setError('');
                           setMessage('');
                         }}
-                        className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
+                        className="font-medium text-Green-600 hover:text-Green-500 dark:text-Green-400 dark:hover:text-Green-300"
                       >
                         Forgot your password?
                       </a>
@@ -304,7 +304,7 @@ export default function Login() {
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+                      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
                     >
                       {isLoading ? (
                         <svg

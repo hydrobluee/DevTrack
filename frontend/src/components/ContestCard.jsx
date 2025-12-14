@@ -4,14 +4,14 @@ import GoogleCalendarButton from './GoogleCalendarButton';
 
 const platformColors = {
   leetcode: 'bg-orange-500/20 text-orange-300',
-  codeforces: 'bg-blue-500/20 text-blue-300',
+  codeforces: 'bg-green-500/20 text-green-300',
   codechef: 'bg-yellow-500/20 text-yellow-300',
   gfg: 'bg-green-500/20 text-green-300',
 };
 
 const platformGradients = {
   leetcode: 'from-orange-500/30 to-orange-600/20',
-  codeforces: 'from-blue-500/30 to-blue-600/20',
+  codeforces: 'from-green-500/30 to-green-600/20',
   codechef: 'from-yellow-500/30 to-yellow-600/20',
   gfg: 'from-green-500/30 to-green-600/20',
 };

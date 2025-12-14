@@ -45,7 +45,7 @@ const NoUserNameFound = ({ service = "LeetCode", redirectPath = "/profile" }) =>
       {/* Action button */}
       <button 
         onClick={handleGoToProfile}
-        className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition-colors w-64"
+        className="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-8 rounded-lg transition-colors w-64"
       >
         Go to Profile
       </button>
@@ -125,7 +125,7 @@ const LeetcodePage = () => {
   if (authLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-16 h-16 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -141,7 +141,7 @@ const LeetcodePage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-2xl font-bold text-blue-400 mb-4">LeetCode Stats</h2>
+          <h2 className="text-2xl font-bold text-green-400 mb-4">LeetCode Stats</h2>
           {username ? (
             <LeetCodeStats username={username} />
           ) : (

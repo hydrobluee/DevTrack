@@ -155,7 +155,7 @@ export default function SignUp() {
             transition={{ duration: 0.5 }}
           >
             <a href="/" className="inline-flex items-center">
-              <span className="text-3xl font-bold text-blue-600 dark:text-blue-400">CPier</span>
+              <span className="text-3xl font-bold text-green-600 dark:text-green-400">DevTrack</span>
             </a>
           </motion.div>
           <motion.h2
@@ -173,7 +173,7 @@ export default function SignUp() {
             transition={{ delay: 0.3 }}
           >
             Already have an account?{' '}
-            <a href="/login" className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
+            <a href="/login" className="font-medium text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300">
               Sign in instead
             </a>
           </motion.p>
@@ -246,7 +246,7 @@ export default function SignUp() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white sm:text-sm transition-colors duration-200"
+                    className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-Green-500 focus:border-Green-500 dark:text-white sm:text-sm transition-colors duration-200"
                     placeholder="you@example.com"
                   />
                 </div>
@@ -268,7 +268,7 @@ export default function SignUp() {
                     required
                     value={formData.password}
                     onChange={handleChange}
-                    className="block w-full pl-10 pr-10 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white sm:text-sm transition-colors duration-200"
+                    className="block w-full pl-10 pr-10 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-Green-500 focus:border-Green-500 dark:text-white sm:text-sm transition-colors duration-200"
                     placeholder="••••••••"
                   />
                   <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
@@ -325,7 +325,7 @@ export default function SignUp() {
                     required
                     value={formData.confirmPassword}
                     onChange={handleChange}
-                    className="block w-full pl-3 pr-10 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-white sm:text-sm transition-colors duration-200"
+                    className="block w-full pl-3 pr-10 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-Green-500 focus:border-Green-500 dark:text-white sm:text-sm transition-colors duration-200"
                     placeholder="Re-enter password"
                   />
                   <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
@@ -344,7 +344,7 @@ export default function SignUp() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition duration-200"
+                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-200"
                 >
                   {isLoading ? 'Creating Account...' : 'Sign Up'}
                 </button>

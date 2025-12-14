@@ -155,7 +155,7 @@ const CodechefPage = () => {
   if (profileLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-16 h-16 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -178,7 +178,7 @@ const CodechefPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
-          <h2 className="text-2xl font-bold text-blue-400 mb-4">CodeChef Stats</h2>
+          <h2 className="text-2xl font-bold text-green-400 mb-4">CodeChef Stats</h2>
           
           {!username ? (
             <div className="text-center p-8">
@@ -191,7 +191,7 @@ const CodechefPage = () => {
               <p className="text-gray-300 mb-6">Please add your CodeChef username to your profile.</p>
               <a
                 href="/profile"
-                className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors inline-block"
+                className="px-6 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors inline-block"
               >
                 Go to Profile
               </a>
@@ -199,8 +199,8 @@ const CodechefPage = () => {
           ) : loading ? (
             <div className="flex justify-center items-center h-64">
               <div className="flex flex-col items-center">
-                <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-                <p className="mt-4 text-blue-300">Loading CodeChef stats...</p>
+                <div className="w-16 h-16 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+                <p className="mt-4 text-green-300">Loading CodeChef stats...</p>
               </div>
             </div>
           ) : error ? (
@@ -214,7 +214,7 @@ const CodechefPage = () => {
               <p className="text-gray-300 mb-6">{error}</p>
               <button
                 onClick={() => window.location.reload()}
-                className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
+                className="px-6 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors"
               >
                 Try Again
               </button>

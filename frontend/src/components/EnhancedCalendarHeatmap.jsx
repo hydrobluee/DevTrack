@@ -78,7 +78,7 @@ const EnhancedCalendarHeatmap = ({
             {[
               { id: 'all', label: 'All Platforms' },
               { id: 'leetcode', label: 'LeetCode', color: 'bg-green-500' },
-              { id: 'codeforces', label: 'Codeforces', color: 'bg-blue-500' },
+              { id: 'codeforces', label: 'Codeforces', color: 'bg-green-500' },
               { id: 'codechef', label: 'CodeChef', color: 'bg-yellow-500' }
             ].map(platform => (
               <button
@@ -135,7 +135,7 @@ const EnhancedCalendarHeatmap = ({
             </div>
             <div className="flex justify-between items-center">
               <div className="flex items-center">
-                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
+                <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
                 <span>Codeforces:</span>
               </div>
               <span className="font-mono font-medium">{tooltipContent.codeforces}</span>

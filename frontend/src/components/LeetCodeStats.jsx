@@ -145,8 +145,8 @@ const LeetcodeStats = ({ username }) => {
       <div className="bg-gray-800 rounded-xl p-8 shadow-lg text-white">
         <div className="flex items-center justify-center h-64">
           <div className="flex flex-col items-center">
-            <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-            <p className="mt-4 text-blue-300">Loading LeetCode stats for {username}...</p>
+            <div className="w-16 h-16 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+            <p className="mt-4 text-green-300">Loading LeetCode stats for {username}...</p>
           </div>
         </div>
       </div>
@@ -173,7 +173,7 @@ const LeetcodeStats = ({ username }) => {
 
           <div className="space-y-3">
             <button
-              className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors w-full"
+              className="px-6 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors w-full"
               onClick={retryFetch}
             >
               Try Again
@@ -269,11 +269,11 @@ const LeetcodeStats = ({ username }) => {
     >
       {/* Header with username */}
       <motion.div className="flex items-center mb-6">
-        <h3 className="text-xl font-bold text-blue-400">
+        <h3 className="text-xl font-bold text-green-400">
           {stats.realName || stats.username}
         </h3>
         {stats.ranking && (
-          <span className="ml-2 px-2 py-1 text-xs bg-blue-900/50 text-blue-300 rounded-full">
+          <span className="ml-2 px-2 py-1 text-xs bg-green-900/50 text-green-300 rounded-full">
             #{stats.ranking}
           </span>
         )}
@@ -286,17 +286,17 @@ const LeetcodeStats = ({ username }) => {
         animate="show"
       >
         <motion.div variants={itemVariants} className="bg-gray-700/50 p-4 rounded-lg">
-          <h3 className="text-blue-300 text-sm">Ranking</h3>
+          <h3 className="text-green-300 text-sm">Ranking</h3>
           <p className="text-3xl font-bold">{stats.ranking || 'N/A'}</p>
         </motion.div>
 
         <motion.div variants={itemVariants} className="bg-gray-700/50 p-4 rounded-lg">
-          <h3 className="text-blue-300 text-sm">Rating</h3>
+          <h3 className="text-green-300 text-sm">Rating</h3>
           <p className="text-3xl font-bold">{stats.rating || 'N/A'}</p>
         </motion.div>
 
         <motion.div variants={itemVariants} className="bg-gray-700/50 p-4 rounded-lg">
-          <h3 className="text-blue-300 text-sm">Contests Attended</h3>
+          <h3 className="text-green-300 text-sm">Contests Attended</h3>
           <p className="text-3xl font-bold">{stats.totalContestsAttended || 0}</p>
         </motion.div>
       </motion.div>
@@ -308,12 +308,12 @@ const LeetcodeStats = ({ username }) => {
         initial="hidden"
         animate="show"
       >
-        <motion.h2 variants={itemVariants} className="text-xl font-bold mb-4 text-blue-400">Problem Solving Stats</motion.h2>
+        <motion.h2 variants={itemVariants} className="text-xl font-bold mb-4 text-green-400">Problem Solving Stats</motion.h2>
         <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
             <div>
               <div className="flex justify-between mb-1">
-                <span className="text-sm text-blue-300">Easy</span>
+                <span className="text-sm text-green-300">Easy</span>
                 <span className="text-sm text-green-400">
                   {stats.easySolved || 0}/{stats.totalEasy || 0}
                 </span>
@@ -329,7 +329,7 @@ const LeetcodeStats = ({ username }) => {
 
             <div>
               <div className="flex justify-between mb-1">
-                <span className="text-sm text-blue-300">Medium</span>
+                <span className="text-sm text-green-300">Medium</span>
                 <span className="text-sm text-yellow-400">
                   {stats.mediumSolved || 0}/{stats.totalMedium || 0}
                 </span>
@@ -345,7 +345,7 @@ const LeetcodeStats = ({ username }) => {
 
             <div>
               <div className="flex justify-between mb-1">
-                <span className="text-sm text-blue-300">Hard</span>
+                <span className="text-sm text-green-300">Hard</span>
                 <span className="text-sm text-red-400">
                   {stats.hardSolved || 0}/{stats.totalHard || 0}
                 </span>
@@ -396,7 +396,7 @@ const LeetcodeStats = ({ username }) => {
                 >
                   {stats.totalSolved || 0}
                 </motion.span>
-                <span className="text-sm text-blue-300">solved</span>
+                <span className="text-sm text-green-300">solved</span>
               </div>
             </motion.div>
           </div>
@@ -415,11 +415,11 @@ const LeetcodeStats = ({ username }) => {
             className="flex justify-between items-center p-4 bg-gray-800 cursor-pointer"
             onClick={() => setExpandedTopics(!expandedTopics)}
           >
-            <h2 className="text-xl font-bold text-blue-400">Topic Analysis</h2>
+            <h2 className="text-xl font-bold text-green-400">Topic Analysis</h2>
             <motion.div
               animate={{ rotate: expandedTopics ? 180 : 0 }}
               transition={{ duration: 0.3 }}
-              className="text-blue-400"
+              className="text-green-400"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -439,19 +439,19 @@ const LeetcodeStats = ({ username }) => {
                 <div className="p-6 bg-gray-800">
                   {/* Top Topics Overview */}
                   <div className="mb-6">
-                    <h3 className="text-blue-300 text-lg mb-3">Top Skills</h3>
+                    <h3 className="text-green-300 text-lg mb-3">Top Skills</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {topTopics.slice(0, 4).map((topic, index) => (
                         <div key={index} className="bg-gray-700 p-3 rounded-lg">
                           <div className="flex justify-between mb-1">
-                            <span className="text-sm text-blue-300">{topic.tagName}</span>
-                            <span className="text-sm text-blue-400">
+                            <span className="text-sm text-green-300">{topic.tagName}</span>
+                            <span className="text-sm text-green-400">
                               {topic.problemsSolved} solved
                             </span>
                           </div>
                           <div className="w-full bg-gray-600 rounded-full h-2.5">
                             <motion.div
-                              className="bg-blue-500 h-2.5 rounded-full"
+                              className="bg-green-500 h-2.5 rounded-full"
                               style={{ width: `${Math.min(100, (topic.problemsSolved / 100) * 100)}%` }}
                               initial={{ width: 0 }}
                               animate={{ width: `${Math.min(100, (topic.problemsSolved / 100) * 100)}%` }}
@@ -569,12 +569,12 @@ const LeetcodeStats = ({ username }) => {
         initial="hidden"
         animate="show"
       >
-        <motion.h2 variants={itemVariants} className="text-xl font-bold mb-4 text-blue-400">Programming Languages</motion.h2>
+        <motion.h2 variants={itemVariants} className="text-xl font-bold mb-4 text-green-400">Programming Languages</motion.h2>
         {stats.languages && stats.languages.length > 0 ? (
           <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {stats.languages.map((lang, index) => (
               <div key={index} className="bg-gray-700/50 p-4 rounded-lg">
-                <h3 className="text-blue-300 text-sm">{lang.languageName}</h3>
+                <h3 className="text-green-300 text-sm">{lang.languageName}</h3>
                 <p className="text-xl font-bold">{lang.problemsSolved}</p>
               </div>
             ))}
@@ -595,25 +595,25 @@ const LeetcodeStats = ({ username }) => {
         initial="hidden"
         animate="show"
       >
-        <motion.h2 variants={itemVariants} className="text-xl font-bold mb-4 text-blue-400">Activity Stats</motion.h2>
+        <motion.h2 variants={itemVariants} className="text-xl font-bold mb-4 text-green-400">Activity Stats</motion.h2>
         <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-gray-700/50 p-4 rounded-lg">
-            <h3 className="text-blue-300 text-sm">Current Streak</h3>
+            <h3 className="text-green-300 text-sm">Current Streak</h3>
             <p className="text-xl font-bold">{stats.streak || 0} days</p>
           </div>
 
           <div className="bg-gray-700/50 p-4 rounded-lg">
-            <h3 className="text-blue-300 text-sm">Total Active Days</h3>
+            <h3 className="text-green-300 text-sm">Total Active Days</h3>
             <p className="text-xl font-bold">{stats.totalActiveDays || 0}</p>
           </div>
 
           <div className="bg-gray-700/50 p-4 rounded-lg">
-            <h3 className="text-blue-300 text-sm">Recent Contest Rating</h3>
+            <h3 className="text-green-300 text-sm">Recent Contest Rating</h3>
             <p className="text-xl font-bold">{stats.rating || 'N/A'}</p>
           </div>
 
           <div className="bg-gray-700/50 p-4 rounded-lg">
-            <h3 className="text-blue-300 text-sm">Global Ranking</h3>
+            <h3 className="text-green-300 text-sm">Global Ranking</h3>
             <p className="text-xl font-bold">{stats.ranking || 'N/A'}</p>
           </div>
         </motion.div>
@@ -628,7 +628,7 @@ const LeetcodeStats = ({ username }) => {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-xl font-semibold mb-4 text-blue-400"
+            className="text-xl font-semibold mb-4 text-green-400"
           >
             Recent Activity
           </motion.h2>

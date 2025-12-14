@@ -69,11 +69,11 @@ const Headers = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <svg className="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 9l3 3-3 3m5 0h3m-11 4h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300">
-              CPier
+            <h1 className="text-2xl font-bold text-green-400 dark:text-green-300">
+              DevTrack
             </h1>
           </motion.div>
         </Link>
@@ -82,10 +82,10 @@ const Headers = () => {
         <nav className="hidden md:flex space-x-8 relative z-50">
           <Link
             to="/dashboard"
-            className={`relative group font-medium transition-all duration-300 ${isActive('/dashboard') ? 'text-blue-400' : 'text-white hover:text-blue-400'}`}
+            className={`relative group font-medium transition-all duration-300 ${isActive('/dashboard') ? 'text-green-400' : 'text-white hover:text-green-400'}`}
           >
             Dashboard
-            <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full ${isActive('/dashboard') ? 'w-full' : ''}`}></span>
+            <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full ${isActive('/dashboard') ? 'w-full' : ''}`}></span>
           </Link>
 
           {/* Coding Profiles Dropdown */}
@@ -107,8 +107,8 @@ const Headers = () => {
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className={`relative group font-medium transition-all duration-300 flex items-center space-x-1 ${
                 isActive('/leetcode') || isActive('/codeforces') || isActive('/codechef') 
-                  ? 'text-blue-400' 
-                  : 'text-white hover:text-blue-400'
+                  ? 'text-green-400' 
+                  : 'text-white hover:text-green-400'
               }`}
             >
               <span>Coding Profiles</span>
@@ -119,7 +119,7 @@ const Headers = () => {
               >
                 ▼
               </motion.span>
-              <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full ${
+              <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full ${
                 isActive('/leetcode') || isActive('/codeforces') || isActive('/codechef') ? 'w-full' : ''
               }`}></span>
             </button>
@@ -171,10 +171,10 @@ const Headers = () => {
 
           <Link
             to="/contest"
-            className={`relative group font-medium transition-all duration-300 ${isActive('/contest') ? 'text-blue-400' : 'text-white hover:text-blue-400'}`}
+            className={`relative group font-medium transition-all duration-300 ${isActive('/contest') ? 'text-green-400' : 'text-white hover:text-green-400'}`}
           >
             Contests
-            <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full ${isActive('/contest') ? 'w-full' : ''}`}></span>
+            <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full ${isActive('/contest') ? 'w-full' : ''}`}></span>
           </Link>
         </nav>
 
@@ -202,7 +202,7 @@ const Headers = () => {
           >
             <Link 
               to="/profile" 
-              className="w-9 h-9 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center shadow-lg text-white font-medium"
+              className="w-9 h-9 rounded-full bg-gradient-to-r from-green-500 to-cyan-400 flex items-center justify-center shadow-lg text-white font-medium"
             >
               {getUserInitial()}
             </Link>

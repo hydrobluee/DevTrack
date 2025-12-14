@@ -64,11 +64,11 @@ const CodeChefStats = ({ data }) => {
           <div className="grid grid-cols-2 md:grid-cols-2 gap-4 w-full max-w-md mx-auto">
             <div className="bg-gray-700/50 p-3 rounded-lg border border-gray-600">
               <div className="text-gray-400 text-sm">Global Rank</div>
-              <div className="text-xl font-bold text-blue-400">#{profileInfo.ranks.global}</div>
+              <div className="text-xl font-bold text-green-400">#{profileInfo.ranks.global}</div>
             </div>
             <div className="bg-gray-700/50 p-3 rounded-lg border border-gray-600">
               <div className="text-gray-400 text-sm">Country Rank</div>
-              <div className="text-xl font-bold text-blue-400">#{profileInfo.ranks.country}</div>
+              <div className="text-xl font-bold text-green-400">#{profileInfo.ranks.country}</div>
             </div>
             <div className="bg-gray-700/50 p-3 rounded-lg border border-gray-600">
               <div className="text-gray-400 text-sm">Problems Solved</div>
@@ -89,11 +89,11 @@ const CodeChefStats = ({ data }) => {
           onClick={() => toggleSection('analysis')}
         >
           <h2 className="text-xl font-semibold flex items-center">
-            <Award className="mr-2 text-blue-400" /> Performance Analysis
+            <Award className="mr-2 text-green-400" /> Performance Analysis
           </h2>
           {expandedSections.analysis ? 
-            <ChevronUp className="text-blue-400" /> : 
-            <ChevronDown className="text-blue-400" />
+            <ChevronUp className="text-green-400" /> : 
+            <ChevronDown className="text-green-400" />
           }
         </div>
         
@@ -101,7 +101,7 @@ const CodeChefStats = ({ data }) => {
           <div className="p-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
               <div className="bg-gray-700/50 p-4 rounded-lg border border-gray-600">
-                <h3 className="text-lg font-medium text-blue-300">Activity Stats</h3>
+                <h3 className="text-lg font-medium text-green-300">Activity Stats</h3>
                 <div className="mt-2 space-y-2">
                   <div className="flex justify-between">
                     <span className="text-gray-400">Active Days:</span>
@@ -119,7 +119,7 @@ const CodeChefStats = ({ data }) => {
               </div>
               
               <div className="bg-gray-700/50 p-4 rounded-lg border border-gray-600">
-                <h3 className="text-lg font-medium text-blue-300">Contest Performance</h3>
+                <h3 className="text-lg font-medium text-green-300">Contest Performance</h3>
                 <div className="mt-2 space-y-2">
                   <div className="flex justify-between">
                     <span className="text-gray-400">Contests:</span>
@@ -137,7 +137,7 @@ const CodeChefStats = ({ data }) => {
               </div>
               
               <div className="bg-gray-700/50 p-4 rounded-lg border border-gray-600">
-                <h3 className="text-lg font-medium text-blue-300">Progress</h3>
+                <h3 className="text-lg font-medium text-green-300">Progress</h3>
                 <div className="mt-2 space-y-2">
                   <div className="flex justify-between">
                     <span className="text-gray-400">Rating Trend:</span>
@@ -163,11 +163,11 @@ const CodeChefStats = ({ data }) => {
           onClick={() => toggleSection('contest')}
         >
           <h2 className="text-xl font-semibold flex items-center">
-            <Star className="mr-2 text-blue-400" /> Contest Performance
+            <Star className="mr-2 text-green-400" /> Contest Performance
           </h2>
           {expandedSections.contest ? 
-            <ChevronUp className="text-blue-400" /> : 
-            <ChevronDown className="text-blue-400" />
+            <ChevronUp className="text-green-400" /> : 
+            <ChevronDown className="text-green-400" />
           }
         </div>
         
@@ -239,7 +239,7 @@ const CodeChefStats = ({ data }) => {
       <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden text-gray-200 border border-gray-700">
         <div className="p-4 bg-gray-700">
           <h2 className="text-xl font-semibold flex items-center">
-            <Code className="mr-2 text-blue-400" /> Recent Contests
+            <Code className="mr-2 text-green-400" /> Recent Contests
           </h2>
         </div>
         
@@ -262,7 +262,7 @@ const CodeChefStats = ({ data }) => {
                   <td className="py-3 px-4 text-sm">{contest.contestName}</td>
                   <td className="py-3 px-4 text-sm text-gray-400">{contest.date}</td>
                   <td className="py-3 px-4">
-                    <span className="px-2 py-1 text-xs font-semibold rounded-full bg-blue-900/50 text-blue-100 border border-blue-700/50">
+                    <span className="px-2 py-1 text-xs font-semibold rounded-full bg-green-900/50 text-green-100 border border-green-700/50">
                       {contest.rating}
                     </span>
                   </td>

@@ -201,7 +201,7 @@ export default function Profile() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex flex-col items-center justify-center">
-        <Loader2 className="h-12 w-12 animate-spin text-blue-500" />
+        <Loader2 className="h-12 w-12 animate-spin text-green-500" />
         <p className="mt-4 text-gray-700 dark:text-gray-300">Loading profile...</p>
       </div>
     );
@@ -266,7 +266,7 @@ export default function Profile() {
                       <button
                         type="button"
                         onClick={() => toggleEdit('name')}
-                        className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                        className="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300"
                       >
                         {editableFields.name ? (
                           <X className="h-4 w-4" onClick={() => cancelEdit()} />
@@ -329,7 +329,7 @@ export default function Profile() {
                       <button
                         type="button"
                         onClick={() => toggleEdit('gender')}
-                        className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                        className="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300"
                       >
                         {editableFields.gender ? (
                           <X className="h-4 w-4" onClick={() => cancelEdit()} />
@@ -367,7 +367,7 @@ export default function Profile() {
                       <button
                         type="button"
                         onClick={() => toggleEdit('location')}
-                        className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                        className="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300"
                       >
                         {editableFields.location ? (
                           <X className="h-4 w-4" onClick={() => cancelEdit()} />
@@ -405,7 +405,7 @@ export default function Profile() {
                       <button
                         type="button"
                         onClick={() => toggleEdit('education')}
-                        className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                        className="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300"
                       >
                         {editableFields.education ? (
                           <X className="h-4 w-4" onClick={() => cancelEdit()} />
@@ -446,7 +446,7 @@ export default function Profile() {
                       <button
                         type="button"
                         onClick={() => toggleEdit('github')}
-                        className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                        className="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300"
                       >
                         {editableFields.github ? (
                           <X className="h-4 w-4" onClick={() => cancelEdit()} />
@@ -484,7 +484,7 @@ export default function Profile() {
                       <button
                         type="button"
                         onClick={() => toggleEdit('linkedin')}
-                        className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                        className="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300"
                       >
                         {editableFields.linkedin ? (
                           <X className="h-4 w-4" onClick={() => cancelEdit()} />
@@ -528,7 +528,7 @@ export default function Profile() {
                         <button
                           type="button"
                           onClick={() => toggleEdit(id)}
-                          className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                          className="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300"
                         >
                           {editableFields[id] ? (
                             <X className="h-4 w-4" onClick={() => cancelEdit()} />
@@ -596,7 +596,7 @@ export default function Profile() {
                     className={`inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 ${
                       !hasChanges || isSaving
                         ? 'bg-gray-400 cursor-not-allowed focus:ring-gray-500'
-                        : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500'
+                        : 'bg-green-600 hover:bg-green-700 focus:ring-green-500'
                     } transition-colors`}
                   >
                     {isSaving ? (

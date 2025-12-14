@@ -4,7 +4,7 @@ import { FiStar, FiTrendingUp, FiAward, FiUsers, FiActivity } from 'react-icons/
 const ProfileCard = ({ user }) => {
   const getInitial = (handle) => handle?.charAt(0)?.toUpperCase() || '?';
   const colorVariants = [
-    'from-blue-500 to-blue-700',
+    'from-green-500 to-green-700',
     'from-purple-500 to-purple-700',
     'from-green-500 to-green-700',
     'from-orange-500 to-orange-700'
@@ -41,7 +41,7 @@ const ProfileCard = ({ user }) => {
             {user.handle}
           </motion.h2>
           <motion.p 
-            className="text-lg text-blue-400 mt-1 capitalize"
+            className="text-lg text-green-400 mt-1 capitalize"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
@@ -60,7 +60,7 @@ const ProfileCard = ({ user }) => {
             className="bg-gray-700/50 p-4 rounded-lg"
           >
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-900/50 rounded-lg text-blue-400">
+              <div className="p-2 bg-green-900/50 rounded-lg text-green-400">
                 {stat.icon}
               </div>
               <div>

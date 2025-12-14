@@ -119,7 +119,7 @@ const Dashboard = () => {
   // if (loading) {
   //   return (
   //     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
-  //       <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+  //       <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-500"></div>
   //     </div>
   //   );
   // }
@@ -144,7 +144,7 @@ const Dashboard = () => {
           <div className="flex flex-col items-center">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="w-28 h-28 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center text-4xl font-bold mb-4 text-white shadow-lg ring-4 ring-white/10 ring-offset-2 ring-offset-gray-900"
+              className="w-28 h-28 rounded-full bg-gradient-to-br from-green-500 via-purple-500 to-pink-500 flex items-center justify-center text-4xl font-bold mb-4 text-white shadow-lg ring-4 ring-white/10 ring-offset-2 ring-offset-gray-900"
             >
               {getAvatar(user.name)}
             </motion.div>
@@ -176,7 +176,7 @@ const Dashboard = () => {
                   href={user.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-blue-600/90 rounded-xl hover:bg-blue-600 transition-all shadow-md hover:shadow-blue-500/30"
+                  className="p-3 bg-green-600/90 rounded-xl hover:bg-green-600 transition-all shadow-md hover:shadow-green-500/30"
                 >
                   <FaLinkedin className="text-white" size={20} />
                 </motion.a>
@@ -242,12 +242,12 @@ const Dashboard = () => {
                   className="flex items-center justify-between p-4 bg-gray-800/40 rounded-xl hover:bg-gray-800/60 transition-all group border border-white/5 hover:border-white/10"
                 >
                   <div className="flex items-center space-x-4">
-                    <div className="p-2 bg-blue-500/20 rounded-lg">
-                      <SiCodeforces className="text-blue-400" size={20} />
+                    <div className="p-2 bg-green-500/20 rounded-lg">
+                      <SiCodeforces className="text-green-400" size={20} />
                     </div>
                     <span className="text-white font-medium">CodeForces</span>
                   </div>
-                  <FiExternalLink className="text-gray-400 group-hover:text-blue-400 transition" />
+                  <FiExternalLink className="text-gray-400 group-hover:text-green-400 transition" />
                 </motion.a>
               )}
             </div>
@@ -261,8 +261,8 @@ const Dashboard = () => {
                 whileHover={{ scale: 1.02 }}
                 className="flex items-center p-4 bg-gray-800/40 rounded-xl border border-white/5"
               >
-                <div className="p-3 bg-blue-500/20 rounded-xl mr-4">
-                  <FiMapPin className="text-blue-400" size={18} />
+                <div className="p-3 bg-green-500/20 rounded-xl mr-4">
+                  <FiMapPin className="text-green-400" size={18} />
                 </div>
                 <div>
                   <p className="text-xs text-gray-400 font-medium">Location</p>
@@ -525,7 +525,7 @@ const Dashboard = () => {
                     className="flex items-center justify-between bg-gray-800/50 p-4 rounded-xl border border-white/5"
                   >
                     <div className="flex items-center">
-                      <SiCodeforces className="text-blue-400 mr-3" size={20} />
+                      <SiCodeforces className="text-green-400 mr-3" size={20} />
                       <span className="text-white">CodeForces</span>
                     </div>
                     <div className="text-white font-medium">
@@ -617,17 +617,17 @@ const Dashboard = () => {
                 className="bg-gradient-to-br from-gray-900/80 to-gray-800/60 rounded-2xl border border-white/10 p-6 shadow-lg backdrop-blur-sm"
               >
                 <div className="flex items-center justify-center mb-4">
-                  <SiCodeforces className="text-blue-400 mr-2" size={20} />
+                  <SiCodeforces className="text-green-400 mr-2" size={20} />
                   <h3 className="text-xl font-semibold text-white">CodeForces Rating</h3>
                 </div>
                 <div className="flex flex-col items-center justify-center">
-                  <div className="text-4xl font-bold text-blue-400 mb-2">
+                  <div className="text-4xl font-bold text-green-400 mb-2">
                     {codeforcesRating.recent || 'N/A'}
                   </div>
                   <div className="text-sm text-gray-400 mb-4">Current Rating</div>
                   <div className="w-full bg-gray-700 rounded-full h-2.5 mb-2">
                     <div
-                      className="bg-blue-400 h-2.5 rounded-full"
+                      className="bg-green-400 h-2.5 rounded-full"
                       style={{ width: `${Math.min(100, (codeforcesRating.recent / (codeforcesRating.max || 3000)) * 100)}%` }}
                     ></div>
                   </div>

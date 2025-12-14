@@ -103,7 +103,7 @@ export default function GoogleCalendarButton({ contest }) {
           onClick={createCalendarLink}
           disabled={loading}
           className={`mt-2 flex items-center gap-2 px-3 py-1.5 text-sm rounded-md transition-colors ${
-            loading ? 'bg-blue-700' : 'bg-blue-600 hover:bg-blue-700'
+            loading ? 'bg-green-700' : 'bg-green-600 hover:bg-green-700'
           } text-white`}
           aria-label="Add to Google Calendar"
         >

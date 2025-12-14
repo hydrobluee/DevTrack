@@ -89,7 +89,7 @@ const RatingChart = ({ ratingHistory }) => {
 
   return (
     <div className="bg-gray-800 rounded-xl shadow-lg border border-gray-700 p-6">
-      <h3 className="text-xl font-semibold text-blue-400 mb-4">
+      <h3 className="text-xl font-semibold text-green-400 mb-4">
         Rating History (Last 6 Months)
       </h3>
       <Chart 

@@ -9,11 +9,24 @@ const profileSchema = new Schema(
       required: true,
       unique: true,
     },
+    // Competitive programming usernames
     codechef_username: { type: String, default: "" },
     codeforces_username: { type: String, default: "" },
     leetcode_username: { type: String, default: "" },
+
+    // Basic profile fields
     bio: { type: String, default: "" },
-    extra: { type: Schema.Types.Mixed }, // flexible for other fields
+    gender: { type: String, default: "" },
+    location: { type: String, default: "" },
+    education: { type: String, default: "" },
+
+    // Social / external profiles
+    github: { type: String, default: "" },
+    linkedin: { type: String, default: "" },
+
+    // flexible for other fields
+    extra: { type: Schema.Types.Mixed },
+
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
   },

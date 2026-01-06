@@ -24,39 +24,57 @@ const CodechefPage = () => {
     try {
       if (!session) return;
 
-      // Prepare contest ranking data
-      const contestRankingData = {
-        codechef_stars: data.profileInfo?.stars || 0,
-        codechef_recent_contest_rating: data.profileInfo?.rating || 0,
-        codechef_max_contest_rating: data.profileInfo?.highestRating || 0,
-      };
+      // Prepare contest ranking data (only include numeric values)
+      const contestRankingData = {};
+      if (typeof data.profileInfo?.stars === 'number') contestRankingData.codechef_stars = data.profileInfo.stars;
+      const recent = Number.isFinite(Number(data.profileInfo?.rating)) ? Number(data.profileInfo.rating) : undefined;
+      const maxR = Number.isFinite(Number(data.profileInfo?.highestRating)) ? Number(data.profileInfo.highestRating) : undefined;
+      if (Number.isFinite(recent)) contestRankingData.codechef_recent_contest_rating = recent;
+      if (Number.isFinite(maxR)) contestRankingData.codechef_max_contest_rating = maxR;
 
       // Prepare total questions data
-      const totalQuestionsData = {
-        codechef_total: data.profileInfo?.problemsSolved || 0,
-      };
+      const totalQuestionsData = {};
+      if (typeof data.profileInfo?.problemsSolved === 'number') totalQuestionsData.codechef_total = data.profileInfo.problemsSolved;
 
-      // Upsert both data sets
-      const upsertPromises = [
-        fetch(`${API_BASE}/api/dashboard/${session.user.id}/contest-ranking`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${session.access_token}`
-          },
-          body: JSON.stringify(contestRankingData)
-        }),
-        fetch(`${API_BASE}/api/dashboard/${session.user.id}/total-questions`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${session.access_token}`
-          },
-          body: JSON.stringify(totalQuestionsData)
-        })
-      ];
+      // Upsert only non-empty payloads (with debug logging)
+      console.debug('upsertCodeChefData payload', { contestRankingData, totalQuestionsData });
 
-      await Promise.all(upsertPromises);
+      const upsertPromises = [];
+      if (Object.keys(contestRankingData).length > 0) {
+        upsertPromises.push(
+          fetch(`${API_BASE}/api/dashboard/${session.user.id}/contest-ranking`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${session.access_token}`
+            },
+            body: JSON.stringify(contestRankingData)
+          }).then(async res => {
+            const json = await res.json().catch(() => null);
+            console.debug('contest-ranking response', res.status, json);
+            return { status: res.status, body: json };
+          }).catch(err => { console.error('contest-ranking upsert error', err); throw err; })
+        );
+      }
+
+      if (Object.keys(totalQuestionsData).length > 0) {
+        upsertPromises.push(
+          fetch(`${API_BASE}/api/dashboard/${session.user.id}/total-questions`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${session.access_token}`
+            },
+            body: JSON.stringify(totalQuestionsData)
+          }).then(async res => {
+            const json = await res.json().catch(() => null);
+            console.debug('total-questions response', res.status, json);
+            return { status: res.status, body: json };
+          }).catch(err => { console.error('total-questions upsert error', err); throw err; })
+        );
+      }
+
+      if (upsertPromises.length > 0) await Promise.all(upsertPromises);
     } catch (err) {
       console.error('Error upserting CodeChef data:', err);
     }
@@ -106,9 +124,6 @@ const CodechefPage = () => {
 
   useEffect(() => {
     if (!username) {
-      if (session) {
-        upsertCodeforcesDatas();
-      }
       return;
     }
 

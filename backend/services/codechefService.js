@@ -9,7 +9,7 @@ const codechefService = {
         `https://www.codechef.com/users/${username}`
       );
       const $ = cheerio.load(response.data);
-      
+
       // Basic profile info
       const rating = $(".rating-number").text().trim();
       const fullName = $(".h2-style").text().trim();
@@ -31,7 +31,7 @@ const codechefService = {
 
       // NEW ROBUST METHOD TO GET PROBLEMS SOLVED COUNT
       let problemsSolved = 0;
-      
+
       // Method 1: Check the problems solved section
       const solvedSection = $('h5:contains("Fully Solved")');
       if (solvedSection.length) {
@@ -41,7 +41,7 @@ const codechefService = {
           problemsSolved = parseInt(countMatch[0], 10);
         }
       }
-      
+
       // Method 2: Fallback to searching in content (for older profiles)
       if (problemsSolved === 0) {
         const content = $('body').text();

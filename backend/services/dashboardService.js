@@ -4,9 +4,17 @@ const TotalQuestions = require("../models/TotalQuestions");
 class DashboardService {
   // Contest Ranking Info Methods
   static async upsertContestRankingInfo(userId, contestData) {
+    // Merge incoming contestData with existing document fields and ignore null/undefined values
+    const existing = await ContestRankingInfo.findOne({ userId }).lean();
+    const prev = (existing && existing.rankingData) ? existing.rankingData : {};
+    const filtered = Object.fromEntries(
+      Object.entries(contestData || {}).filter(([_, v]) => v !== null && v !== undefined)
+    );
+    const merged = { ...prev, ...filtered };
+
     const doc = await ContestRankingInfo.findOneAndUpdate(
       { userId },
-      { rankingData: contestData, updatedAt: new Date() },
+      { rankingData: merged, updatedAt: new Date() },
       { upsert: true, new: true, setDefaultsOnInsert: true }
     ).lean();
     return doc;
@@ -19,9 +27,22 @@ class DashboardService {
 
   // Total Questions Methods
   static async upsertTotalQuestions(userId, questionsData) {
+    // Merge incoming questionsData with existing document fields and ignore null/undefined values
+    const existing = await TotalQuestions.findOne({ userId }).lean();
+    const prev = (existing && existing.questionsData) ? existing.questionsData : {};
+
+    // Filter out null/undefined values so they don't overwrite good existing data
+    const filtered = Object.fromEntries(
+      Object.entries(questionsData || {}).filter(([_, v]) => v !== null && v !== undefined)
+    );
+
+    const mergedQuestions = { ...prev, ...filtered };
+
+    console.debug(`upsertTotalQuestions: user=${userId}, prev=${JSON.stringify(prev)}, filtered=${JSON.stringify(filtered)}, merged=${JSON.stringify(mergedQuestions)}`);
+
     const doc = await TotalQuestions.findOneAndUpdate(
       { userId },
-      { questionsData, updatedAt: new Date() },
+      { questionsData: mergedQuestions, updatedAt: new Date() },
       { upsert: true, new: true, setDefaultsOnInsert: true }
     ).lean();
     return doc;

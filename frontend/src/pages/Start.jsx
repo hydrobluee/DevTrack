@@ -186,7 +186,7 @@ export default function Home() {
             </div>
             <div className="flex items-center space-x-4">
               <a
-                href="https://github.com/suveerprasad/cp-tracker"
+                href="https://github.com/hydrobluee/DevTrack"
                 className="text-gray-400 hover:text-green-400 transition-colors duration-300"
                 aria-label="GitHub"
               >

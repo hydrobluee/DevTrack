@@ -92,41 +92,60 @@ const LeetcodeStats = ({ username }) => {
 
   const upsertLeetCodeData = async (leetcodeData) => {
     try {
-      // Prepare contest ranking data
-      const contestRankingData = {
-        leetcode_recent_contest_rating: parseFloat(leetcodeData.rating) || 0,
-        leetcode_max_contest_rating: parseFloat(leetcodeData.rating) || 0,
-      };
+      // Prepare contest ranking data (only include numeric rating if present)
+      const contestRankingData = {};
+      const ratingNum = parseFloat(leetcodeData.rating);
+      if (Number.isFinite(ratingNum)) {
+        contestRankingData.leetcode_recent_contest_rating = ratingNum;
+        contestRankingData.leetcode_max_contest_rating = ratingNum;
+      }
 
-      // Prepare total questions data
-      const totalQuestionsData = {
-        leetcode_easy: leetcodeData.easySolved || 0,
-        leetcode_medium: leetcodeData.mediumSolved || 0,
-        leetcode_hard: leetcodeData.hardSolved || 0,
-        leetcode_total: leetcodeData.totalSolved || 0,
-      };
+      // Prepare total questions data, only include keys that are actual numbers
+      const totalQuestionsData = {};
+      if (typeof leetcodeData.easySolved === 'number') totalQuestionsData.leetcode_easy = leetcodeData.easySolved;
+      if (typeof leetcodeData.mediumSolved === 'number') totalQuestionsData.leetcode_medium = leetcodeData.mediumSolved;
+      if (typeof leetcodeData.hardSolved === 'number') totalQuestionsData.leetcode_hard = leetcodeData.hardSolved;
+      if (typeof leetcodeData.totalSolved === 'number') totalQuestionsData.leetcode_total = leetcodeData.totalSolved;
 
-      // Upsert both data sets
-      const upsertPromises = [
-        fetch(`${API_BASE}/api/dashboard/${session.user.id}/contest-ranking`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${session.access_token}`
-          },
-          body: JSON.stringify(contestRankingData)
-        }),
-        fetch(`${API_BASE}/api/dashboard/${session.user.id}/total-questions`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${session.access_token}`
-          },
-          body: JSON.stringify(totalQuestionsData)
-        })
-      ];
+      // Upsert only non-empty payloads (with debug logging)
+      console.debug('upsertLeetCodeData payload', { contestRankingData, totalQuestionsData });
 
-      await Promise.all(upsertPromises);
+      const upsertPromises = [];
+      if (Object.keys(contestRankingData).length > 0) {
+        upsertPromises.push(
+          fetch(`${API_BASE}/api/dashboard/${session.user.id}/contest-ranking`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${session.access_token}`
+            },
+            body: JSON.stringify(contestRankingData)
+          }).then(async (res) => {
+            const json = await res.json().catch(() => null);
+            console.debug('contest-ranking response', res.status, json);
+            return { status: res.status, body: json };
+          }).catch(err => { console.error('contest-ranking upsert error', err); throw err; })
+        );
+      }
+
+      if (Object.keys(totalQuestionsData).length > 0) {
+        upsertPromises.push(
+          fetch(`${API_BASE}/api/dashboard/${session.user.id}/total-questions`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${session.access_token}`
+            },
+            body: JSON.stringify(totalQuestionsData)
+          }).then(async (res) => {
+            const json = await res.json().catch(() => null);
+            console.debug('total-questions response', res.status, json);
+            return { status: res.status, body: json };
+          }).catch(err => { console.error('total-questions upsert error', err); throw err; })
+        );
+      }
+
+      if (upsertPromises.length > 0) await Promise.all(upsertPromises);
     } catch (err) {
       console.error('Error upserting LeetCode data:', err);
     }

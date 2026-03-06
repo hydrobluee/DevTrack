@@ -28,38 +28,56 @@ const CodeforcesPage = () => {
     try {
       if (!session) return;
 
-      // Prepare contest ranking data (only updating Codeforces fields)
-      const contestRankingData = {
-        codeforces_recent_contest_rating: data.rating || 0,
-        codeforces_max_contest_rating: data.maxRating || 0
-      };
+      // Prepare contest ranking data (only include numeric ratings if present)
+      const contestRankingData = {};
+      const recentRating = (typeof data.rating === "number") ? data.rating : (Number.isFinite(Number(data.rating)) ? Number(data.rating) : undefined);
+      const maxRating = (typeof data.maxRating === "number") ? data.maxRating : (Number.isFinite(Number(data.maxRating)) ? Number(data.maxRating) : undefined);
+      if (Number.isFinite(recentRating)) contestRankingData.codeforces_recent_contest_rating = recentRating;
+      if (Number.isFinite(maxRating)) contestRankingData.codeforces_max_contest_rating = maxRating;
 
-      // Prepare total questions data (only updating Codeforces field)
-      const totalQuestionsData = {
-        codeforces_total: data.totalSolved || 0,
-      };
+      // Prepare total questions data (only include if present)
+      const totalQuestionsData = {};
+      if (typeof data.totalSolved === 'number') totalQuestionsData.codeforces_total = data.totalSolved;
 
-      // Upsert both data sets
-      const upsertPromises = [
-        fetch(`${API_BASE}/api/dashboard/${session.user.id}/contest-ranking`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${session.access_token}`
-          },
-          body: JSON.stringify(contestRankingData)
-        }),
-        fetch(`${API_BASE}/api/dashboard/${session.user.id}/total-questions`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${session.access_token}`
-          },
-          body: JSON.stringify(totalQuestionsData)
-        })
-      ];
+      // Upsert only non-empty payloads
+      console.debug('upsertCodeforcesData payload', { contestRankingData, totalQuestionsData });
 
-      await Promise.all(upsertPromises);
+      const upsertPromises = [];
+      if (Object.keys(contestRankingData).length > 0) {
+        upsertPromises.push(
+          fetch(`${API_BASE}/api/dashboard/${session.user.id}/contest-ranking`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${session.access_token}`
+            },
+            body: JSON.stringify(contestRankingData)
+          }).then(async res => {
+            const json = await res.json().catch(() => null);
+            console.debug('contest-ranking response', res.status, json);
+            return { status: res.status, body: json };
+          }).catch(err => { console.error('contest-ranking upsert error', err); throw err; })
+        );
+      }
+
+      if (Object.keys(totalQuestionsData).length > 0) {
+        upsertPromises.push(
+          fetch(`${API_BASE}/api/dashboard/${session.user.id}/total-questions`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${session.access_token}`
+            },
+            body: JSON.stringify(totalQuestionsData)
+          }).then(async res => {
+            const json = await res.json().catch(() => null);
+            console.debug('total-questions response', res.status, json);
+            return { status: res.status, body: json };
+          }).catch(err => { console.error('total-questions upsert error', err); throw err; })
+        );
+      }
+
+      if (upsertPromises.length > 0) await Promise.all(upsertPromises);
     } catch (err) {
       console.error('Error upserting Codeforces data:', err);
     }
@@ -109,9 +127,6 @@ const CodeforcesPage = () => {
   // Fetch Codeforces data when username changes
   useEffect(() => {
     if (!username) {
-      if (session) {
-        upsertCodeforcesDatas();
-      }
       return;
     }
 

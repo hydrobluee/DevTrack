@@ -115,10 +115,12 @@ export default function Profile() {
   };
 
   const toggleEdit = (field) => {
+    console.log()
     setEditableFields(prev => ({
       ...prev,
       [field]: !prev[field]
     }));
+    console.log({editableFields}+"....")
   };
 
   const cancelEdit = () => {

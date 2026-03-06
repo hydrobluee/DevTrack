@@ -20,12 +20,14 @@ const getProfile = async (req, res) => {
         return acc;
       }, {});
 
-      // Calculate total solved problems
+      // Calculate total solved problems (unique problems with OK verdict)
       const solvedProblems = new Set();
+      let totalAcceptedSubmissions = 0;
       submissions.forEach(submission => {
         if (submission.verdict === 'OK') {
           const problemId = `${submission.problem.contestId}-${submission.problem.index}`;
           solvedProblems.add(problemId);
+          totalAcceptedSubmissions++;
         }
       });
       const totalSolved = solvedProblems.size;

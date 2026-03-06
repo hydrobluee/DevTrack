@@ -49,7 +49,17 @@ const Dashboard = () => {
         }
 
         const data = await response.json();
+        console.debug('Dashboard API response:', data); // debug
         setDashboardData(data);
+        // extra debug: log parsed docs
+        try {
+          const totalsDoc = data?.total_questions ? (Array.isArray(data.total_questions) ? data.total_questions[0] : data.total_questions).questionsData ?? (Array.isArray(data.total_questions) ? data.total_questions[0] : data.total_questions) : null;
+          const rankingDoc = data?.contest_ranking_info ? (Array.isArray(data.contest_ranking_info) ? data.contest_ranking_info[0] : data.contest_ranking_info).rankingData ?? (Array.isArray(data.contest_ranking_info) ? data.contest_ranking_info[0] : data.contest_ranking_info) : null;
+          console.debug('Parsed dashboard totals:', totalsDoc);
+          console.debug('Parsed contest ranking:', rankingDoc);
+        } catch (err) {
+          console.debug('Error parsing dashboard response for debug:', err);
+        }
       } catch (error) {
         console.error("Error fetching dashboard data:", error);
       } finally {
@@ -65,10 +75,27 @@ const Dashboard = () => {
     return name.charAt(0).toUpperCase();
   };
 
+  // Helpers: support backend returning either an object or an array
+  const getTotalQuestionsDoc = () => {
+    const t = dashboardData?.total_questions;
+    if (!t) return null;
+    const doc = Array.isArray(t) ? t[0] : t;
+    // Support backend storing the payload under `questionsData`
+    return doc.questionsData ?? doc;
+  };
+
+  const getContestRankingDoc = () => {
+    const c = dashboardData?.contest_ranking_info;
+    if (!c) return null;
+    const doc = Array.isArray(c) ? c[0] : c;
+    // Support backend storing payload under `rankingData`
+    return doc.rankingData ?? doc;
+  };
+
   // Calculate total questions solved across all platforms
   const getTotalQuestionsSolved = () => {
-    if (!dashboardData?.total_questions?.length) return 0;
-    const totals = dashboardData.total_questions[0];
+    const totals = getTotalQuestionsDoc();
+    if (!totals) return 0;
     return (totals.leetcode_total || 0) +
       (totals.codechef_total || 0) +
       (totals.codeforces_total || 0);
@@ -76,8 +103,8 @@ const Dashboard = () => {
 
   // Get contest rating for a specific platform
   const getContestRating = (platform) => {
-    if (!dashboardData?.contest_ranking_info?.length) return null;
-    const data = dashboardData.contest_ranking_info[0];
+    const data = getContestRankingDoc();
+    if (!data) return null;
 
     if (platform === 'leetcode') {
       return {
@@ -101,14 +128,15 @@ const Dashboard = () => {
 
   // Get questions solved for a specific platform
   const getPlatformQuestions = (platform) => {
-    if (!dashboardData?.total_questions?.length) return 0;
-    return dashboardData.total_questions[0][`${platform}_total`] || 0;
+    const totals = getTotalQuestionsDoc();
+    if (!totals) return 0;
+    return totals[`${platform}_total`] || 0;
   };
 
   // Get LeetCode difficulty breakdown
   const getLeetCodeBreakdown = () => {
-    if (!dashboardData?.total_questions?.length) return { easy: 0, medium: 0, hard: 0 };
-    const data = dashboardData.total_questions[0];
+    const data = getTotalQuestionsDoc();
+    if (!data) return { easy: 0, medium: 0, hard: 0 };
     return {
       easy: data.leetcode_easy || 0,
       medium: data.leetcode_medium || 0,
@@ -133,6 +161,7 @@ const Dashboard = () => {
     <div>
       <Header />
       <div className="min-h-screen flex bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+        {/* Dashboard debug output is logged to the console (removed on-screen panel) */}
         {/* Enhanced Sidebar */}
         <motion.div
           initial={{ x: -100, opacity: 0 }}

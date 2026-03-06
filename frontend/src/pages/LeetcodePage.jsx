@@ -108,8 +108,6 @@ const LeetcodePage = () => {
     if (profileData) {
       if (profileData.leetcode_username) {
         setUsername(profileData.leetcode_username);
-      } else if (session) {
-        upsertLeetCodeData();
       }
     }
   }, [profileData, session]);

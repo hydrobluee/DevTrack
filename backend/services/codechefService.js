@@ -70,8 +70,21 @@ const codechefService = {
         problemsSolved
       };
     } catch (error) {
-      console.error("Error extracting profile data:", error);
-      throw new Error("Failed to extract profile data");
+      console.error("Error extracting profile data for", username, ":", error.message);
+      // Return default values instead of throwing
+      return {
+        username,
+        fullName: '',
+        profileImage: '',
+        rating: '0',
+        stars: 0,
+        highestRating: 0,
+        ranks: {
+          global: '',
+          country: ''
+        },
+        problemsSolved: 0
+      };
     }
   },
 
@@ -109,8 +122,13 @@ const codechefService = {
         heatmapData: formattedData,
       };
     } catch (error) {
-      console.error("Error extracting submission heatmap:", error);
-      throw new Error(`Failed to extract submission heatmap: ${error.message}`);
+      console.error("Error extracting submission heatmap for", username, ":", error.message);
+      // Return default values
+      return {
+        activeDays: 0,
+        totalSubmissions: 0,
+        heatmapData: [],
+      };
     }
   },
 
@@ -168,8 +186,14 @@ const codechefService = {
         contestHistory: contestData,
       };
     } catch (error) {
-      console.error("Error extracting contest graph:", error);
-      throw new Error("Failed to extract contest graph");
+      console.error("Error extracting contest graph for", username, ":", error.message);
+      // Return default values
+      return {
+        contestsParticipated: 0,
+        highestRating: 0,
+        bestRank: 0,
+        contestHistory: [],
+      };
     }
   },
 

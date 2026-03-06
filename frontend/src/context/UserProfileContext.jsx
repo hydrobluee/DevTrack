@@ -48,7 +48,7 @@ export const UserProfileProvider = ({ children }) => {
 
       try {
         // LeetCode
-        if (profileData.leetcode_username) {
+        if (profileData.leetcode_username && profileData.leetcode_username.trim()) {
           try {
             const res = await fetch(`${API_BASE}/api/leetcode/stats/${profileData.leetcode_username}`);
             if (res.ok) {
@@ -97,7 +97,7 @@ export const UserProfileProvider = ({ children }) => {
         }
 
         // CodeForces
-        if (profileData.codeforces_username) {
+        if (profileData.codeforces_username && profileData.codeforces_username.trim()) {
           try {
             const res = await fetch(`${API_BASE}/api/codeforces/profile/${profileData.codeforces_username}`);
             if (res.ok) {
@@ -133,9 +133,9 @@ export const UserProfileProvider = ({ children }) => {
         }
 
         // CodeChef
-        if (profileData.codechef_username) {
+        if (profileData.codechef_username && profileData.codechef_username.trim()) {
           try {
-            const res = await fetch(`${API_BASE}/api/codechef/profile/${profileData.codechef_username}/`);
+            const res = await fetch(`${API_BASE}/api/codechef/profile/${profileData.codechef_username}`);
             if (res.ok) {
               const data = await res.json();
               const totalQuestionsData = {};

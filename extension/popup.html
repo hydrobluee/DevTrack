@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevTrack Companion</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>DevTrack 💻</h1>
+        <p class="subtitle">Upcoming contests & quick links</p>
+      </header>
+
+      <section class="controls">
+        <label for="backendUrl">API base URL</label>
+        <input id="backendUrl" type="url" placeholder="http://localhost:3000" />
+
+        <label for="userId">DevTrack User ID</label>
+        <input id="userId" type="text" placeholder="MongoDB user id (e.g. 64...)" />
+
+        <label for="authToken">Authorization token (JWT)</label>
+        <input id="authToken" type="text" placeholder="Bearer token" />
+
+        <div class="actions">
+          <button id="saveUrl">Save</button>
+          <button id="refresh">Refresh</button>
+        </div>
+      </section>
+
+      <section class="links">
+        <button id="openDashboard" class="secondary">Open DevTrack dashboard</button>
+      </section>
+
+      <section class="content">
+        <div id="status" class="status"></div>
+        <div id="stats" class="stats"></div>
+        <ul id="contestList" class="contest-list"></ul>
+      </section>
+    </div>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

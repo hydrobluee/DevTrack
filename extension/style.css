@@ -1,145 +1,118 @@
-:root {
-  --bg: #0b1220;
-  --card: #141a2b;
-  --text: #e8eef7;
-  --muted: rgba(232, 238, 247, 0.7);
-  --accent: #4f46e5;
-  --danger: #ef4444;
-}
-
+/* Reset */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
+/* Body (fixed extension size) */
 body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  width: 360px;
-}
+  height: 400px;
+  width: 380px;
 
-.container {
-  padding: 12px 14px;
-}
-
-h1 {
-  margin: 0;
-  font-size: 17px;
-}
-
-.subtitle {
-  margin: 4px 0 12px;
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.controls label {
-  display: block;
-  font-size: 11px;
-  color: var(--muted);
-  margin-bottom: 4px;
-}
-
-.controls input {
-  width: 100%;
-  padding: 8px 10px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--text);
-}
-
-.actions {
   display: flex;
-  gap: 6px;
-  margin-top: 8px;
+  justify-content: center;
+  align-items: center;
+
+  background: radial-gradient(circle at center, #0b1220 0%, #05070c 75%);
+  font-family: "Montserrat", sans-serif;
+  color: #9ca3af;
 }
 
-button {
+/* Main container */
+.main {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+  text-align: center;
+  padding: 20px;
+}
+
+/* Logo container */
+.logo-container {
+  position: relative;
+  border-radius: 50%;
+  padding: 8px;
+  transition: all 0.4s ease;
+}
+
+/* Ring */
+.logo-container::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(74, 222, 128, 0.15);
+  transition: all 0.4s ease;
+}
+
+/* Logo */
+.logo-container img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+}
+
+/* Hover effect */
+.logo-container:hover {
+  transform: scale(1.05);
+}
+
+.logo-container:hover::before {
+  border-color: rgba(74, 222, 128, 0.6);
+  box-shadow: 0 0 30px rgba(74, 222, 128, 0.25);
+}
+
+/* Title */
+.title {
+  color: #4ade80;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Description */
+.description {
   font-size: 13px;
-  padding: 8px 10px;
-  border-radius: 8px;
+  line-height: 1.5;
+  opacity: 0.75;
+  padding: 0 10px;
+}
+
+/* Button */
+.cta {
+  /* width: 90%; */
+  padding: 15px 50px;
+
+  background: #16a34a;
+  color: white;
+
+  font-size: 15px;
+  font-weight: 500;
+
   border: none;
+  border-radius: 8px;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.12);
-  color: var(--text);
+  text-align: center;
+
+  transition: all 0.25s ease;
+
+  white-space: nowrap;
 }
 
-button.primary {
-  background: var(--accent);
+/* Button hover */
+.cta:hover {
+  transform: translateY(-2px);
+  background: #22c55e;
+  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.35);
 }
 
-button.secondary {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-button:hover {
-  opacity: 0.94;
-}
-
-.status {
-  font-size: 12px;
-  margin-top: 10px;
-  min-height: 18px;
-  color: var(--muted);
-}
-
-.stats {
-  margin-top: 10px;
-  font-size: 12px;
-  color: var(--text);
-}
-
-.stats .stat-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 8px 10px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.06);
-  margin-bottom: 6px;
-}
-
-.stats .stat-row span:first-child {
-  color: var(--muted);
-}
-
-.contest-list {
-  list-style: none;
-  padding: 0;
-  margin: 10px 0 0;
-}
-
-.contest-item {
-  padding: 10px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.06);
-  margin-bottom: 8px;
-}
-
-.contest-item strong {
-  display: block;
-  font-size: 13px;
-  margin-bottom: 4px;
-}
-
-.contest-meta {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  font-size: 11px;
-  color: var(--muted);
-}
-
-.contest-meta a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-@media (max-width: 360px) {
-  body {
-    width: 320px;
-  }
+/* Click effect */
+.cta:active {
+  transform: scale(0.97);
 }

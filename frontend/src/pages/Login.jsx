@@ -45,7 +45,9 @@ export default function Login() {
     setError('');
     setSuccess('');
     try {
-      const { data, error } = await signInUser(email, password);
+      const trimmedEmail = email.trim().toLowerCase();
+      const trimmedPassword = password.trim();
+      const { data, error } = await signInUser(trimmedEmail, trimmedPassword);
       if (error) {
         setError('Bad credentials');
       } else if (data?.user) {

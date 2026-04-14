@@ -8,7 +8,9 @@ const TOKEN_EXPIRY = "7d";
 
 exports.signup = async (req, res) => {
   try {
-    const { email, password, name } = req.body;
+    let { email, password, name } = req.body;
+    email = typeof email === "string" ? email.trim().toLowerCase() : "";
+    name = typeof name === "string" ? name.trim() : "";
     if (!email || !password) {
       return res.status(400).json({ error: "Email and password are required" });
     }
@@ -38,7 +40,8 @@ exports.signup = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    let { email, password } = req.body;
+    email = typeof email === "string" ? email.trim().toLowerCase() : "";
     if (!email || !password) {
       return res.status(400).json({ error: "Email and password are required" });
     }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, BarChart2, Calendar, TrendingUp, Code, AlertCircle, Github, Link as LinkIcon } from 'lucide-react';
+import logo from '../../images/DevTrack_nobg.png';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -75,17 +76,18 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="flex flex-col min-h-screen bg-gray-900 text-gray-300">
       {/* Navigation */}
       <nav className={`fixed w-full z-10 transition-all duration-300 ${isScrolled ? 'bg-white dark:bg-gray-900 shadow-md' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <span className="text-2xl font-bold text-green-600 dark:text-green-400">DevTrack</span>
+                return <img src={logo} width={85} height={85} alt="Company Logo" className="mt-4 ml-15" />
+                {/* <span className="text-2xl font-bold text-green-600 dark:text-green-400">DevTrack</span> */}
               </div>
               <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-4">
+                <div className="ml-7 flex items-baseline space-x-4">
                   <a href="#" className="text-gray-800 dark:text-gray-200 hover:text-green-600 dark:hover:text-green-400 px-3 py-2 rounded-md font-medium">Home</a>
                   <a href="#features" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 px-3 py-2 rounded-md font-medium">Features</a>
                 </div>

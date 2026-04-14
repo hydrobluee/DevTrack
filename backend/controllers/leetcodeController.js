@@ -116,6 +116,107 @@ class LeetcodeController {
     }
   }
 
+  /**
+   * Get problem details and common solutions
+   */
+  async getProblemSolution(req, res, next) {
+    try {
+      const { slug } = req.params;
+      
+      if (!slug) {
+        return res.status(400).json({
+          success: false,
+          message: 'Problem slug is required'
+        });
+      }
+
+      const problemData = await leetcodeService.getProblemDetails(slug);
+      
+      if (!problemData || !problemData.question) {
+        return res.status(404).json({
+          success: false,
+          message: `Problem not found: ${slug}`
+        });
+      }
+
+      // Extract relevant solution information
+      const { question } = problemData;
+      
+      // Parse stats JSON string from GraphQL
+      let statsData = {
+        accepted: 0,
+        submissions: 0,
+        acceptanceRate: '0%'
+      };
+      
+      try {
+        if (typeof question.stats === 'string') {
+          const parsedStats = JSON.parse(question.stats);
+          statsData = {
+            accepted: parsedStats.totalAcceptedRaw || parsedStats.totalAccepted || 0,
+            submissions: parsedStats.totalSubmissionRaw || parsedStats.totalSubmission || 0,
+            acceptanceRate: parsedStats.acRate || '0%'
+          };
+        }
+      } catch (parseErr) {
+        console.error('Error parsing stats:', parseErr);
+      }
+      
+      // Also use acRate from question if available
+      if (question.acRate) {
+        statsData.acceptanceRate = question.acRate;
+      }
+      
+      // Extract code snippets for common languages
+      const codeSnippets = {};
+      if (question.codeSnippets && Array.isArray(question.codeSnippets)) {
+        question.codeSnippets.forEach(snippet => {
+          if (['python3', 'java', 'javascript', 'cpp'].includes(snippet.langSlug)) {
+            codeSnippets[snippet.langSlug] = {
+              language: snippet.lang,
+              code: snippet.code
+            };
+          }
+        });
+      }
+      
+      // Default solution approaches
+      const solutions = [
+        {
+          approach: 'Brute Force',
+          timeComplexity: 'O(n)',
+          spaceComplexity: 'O(1)',
+          explanation: 'Basic solution with simple iteration'
+        },
+        {
+          approach: 'Optimized',
+          timeComplexity: 'O(n log n)',
+          spaceComplexity: 'O(n)',
+          explanation: 'Improved solution with better performance'
+        }
+      ];
+      
+      res.json({
+        success: true,
+        problem: {
+          id: question.questionId,
+          title: question.title,
+          titleSlug: question.titleSlug,
+          difficulty: question.difficulty,
+          likes: question.likes,
+          dislikes: question.dislikes,
+          categoryTitle: question.categoryTitle,
+          description: question.content || ''
+        },
+        stats: statsData,
+        solutions: solutions,
+        codeSnippets: codeSnippets
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
 }
 
 module.exports = new LeetcodeController();

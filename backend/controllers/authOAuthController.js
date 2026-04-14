@@ -45,9 +45,12 @@ exports.googleCallback = async (req, res) => {
     const oauth2 = google.oauth2({ auth: oAuth2Client, version: "v2" });
     const { data } = await oauth2.userinfo.get();
 
-    const { email, name } = data;
+    let { email, name } = data;
     if (!email)
       return res.status(400).send("Email not available from Google profile");
+
+    email = email.trim().toLowerCase();
+    name = typeof name === "string" ? name.trim() : "";
 
     // Find or create user
     let user = await User.findOne({ email });

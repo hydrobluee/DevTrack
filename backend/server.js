@@ -24,7 +24,7 @@ app.use(
     origin:
       process.env.NODE_ENV === "production"
         ? process.env.FRONTEND_PROD_URL
-        : "http://localhost:5173",
+        : true, // allow localhost and extension origins in dev and while testing
     credentials: true,
     exposedHeaders: ["Authorization"],
   })

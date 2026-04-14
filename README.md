@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="logo.jpeg" alt="Project Logo" width="200"/>
+</p>
+
+<h1 align="center">DevTrack</h1>
+
 # DevTrack 🔥🔥💻
 
 A full-stack platform to track competitive programming activity across Codeforces, CodeChef, LeetCode and more.

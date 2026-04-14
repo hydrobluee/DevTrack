@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "DevTrack Companion",
+  "description": "Quickly view upcoming programming contests and launch the DevTrack dashboard from your browser toolbar.",
+  "version": "0.1.0",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": [
+    "http://localhost:5173/*",
+    "http://localhost:3000/*",
+    "https://*/*",
+    "http://*/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

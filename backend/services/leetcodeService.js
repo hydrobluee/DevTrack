@@ -429,7 +429,51 @@ class LeetcodeService {
       url: `https://leetcode.com/contest/${contest.titleSlug}/`
     }));
   }
-  
+
+  /**
+   * Get problem details including description and metadata
+   */
+  async getProblemDetails(slug) {
+    const query = `
+      query questionData($titleSlug: String!) {
+        question(titleSlug: $titleSlug) {
+          questionId
+          questionFrontendId
+          categoryTitle
+          boundTopicId
+          title
+          titleSlug
+          content
+          difficulty
+          likes
+          dislikes
+          isLiked
+          similarQuestions
+          exampleTestcases
+          metaData
+          stats
+          acRate
+          topicTags {
+            name
+            slug
+            id
+          }
+          codeSnippets {
+            lang
+            langSlug
+            code
+          }
+        }
+      }
+    `;
+    
+    try {
+      return await this.makeGraphQLRequest(query, { titleSlug: slug });
+    } catch (error) {
+      console.error(`Error fetching problem details for ${slug}:`, error);
+      return null;
+    }
+  }
   
 }
 

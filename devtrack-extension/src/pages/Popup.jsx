@@ -1,8 +1,12 @@
 import React, { useEffect } from "react";
 import PopupLogoCard from "../components/PopupLogoCard";
-import { openExtensionPage } from "../lib/chrome";
+import { openBrowserTab } from "../lib/chrome";
 
 export default function Popup() {
+  const handleGetStarted = () => {
+    openBrowserTab("http://localhost:5173/");
+  };
+
   useEffect(() => {
     const { body } = document;
     const prev = {
@@ -44,12 +48,13 @@ export default function Popup() {
           all in one place.
         </p>
 
-        <a
-          href={openExtensionPage("http://localhost:5173/")}
+        <button
+          type="button"
+          onClick={handleGetStarted}
           className="inline-block rounded-[8px] bg-emerald-600 px-[50px] py-[15px] text-[15px] font-medium text-white no-underline transition duration-200 hover:-translate-y-0.5 hover:bg-emerald-500 hover:shadow-[0_8px_25px_rgba(34,197,94,0.35)] active:scale-[0.97]"
         >
           Get Started
-        </a>
+        </button>
       </div>
     </div>
   );

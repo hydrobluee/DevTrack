@@ -29,6 +29,15 @@ export function openExtensionPage(path) {
   return `/${normalizedPath}`;
 }
 
+export function openBrowserTab(url) {
+  if (typeof chrome !== 'undefined' && chrome?.tabs?.create) {
+    chrome.tabs.create({ url });
+    return;
+  }
+
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+
 export function getAssetUrl(path) {
   const normalizedPath = path.startsWith('/') ? path.slice(1) : path;
 

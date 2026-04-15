@@ -3,14 +3,28 @@
   "name": "DevTrack Companion",
   "description": "Quickly view upcoming programming contests and launch the DevTrack dashboard from your browser toolbar.",
   "version": "0.1.0",
+  "icons": {
+    "128": "./images/devtrack-nobg.png"
+  },
   "permissions": ["storage", "tabs"],
-  "host_permissions": [
-    "http://localhost:5173/*",
-    "http://localhost:3000/*",
-    "https://*/*",
-    "http://*/*"
-  ],
+  "host_permissions": ["https://api.github.com/*", "https://leetcode.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
   "action": {
     "default_popup": "popup.html"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://leetcode.com/problems/*"],
+      "js": ["content-script.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["page-bridge.js"],
+      "matches": ["https://leetcode.com/*"]
+    }
+  ]
 }

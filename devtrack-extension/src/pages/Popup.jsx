@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import PopupLogoCard from "../components/PopupLogoCard";
-import { openBrowserTab } from "../lib/chrome";
+import { openExtensionPage } from "../lib/chrome";
 
 export default function Popup() {
   const handleGetStarted = () => {
-    openBrowserTab("http://localhost:5173/");
+    window.location.href = openExtensionPage("getting_started.html");
   };
 
   useEffect(() => {

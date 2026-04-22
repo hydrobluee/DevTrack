@@ -234,7 +234,7 @@ export default function GettingStarted() {
     <div className="min-h-full w-full bg-[radial-gradient(circle_at_top,#10231c_0%,#07110d_35%,#020617_100%)] text-slate-100">
       <div className="mx-auto flex min-h-full w-[380px] flex-col gap-4 px-5 py-5">
         <a
-          href={openExtensionPage("popup.html")}
+          href={openExtensionPage("getting_started.html")}
           className="inline-flex w-fit items-center gap-2 text-sm text-emerald-300/90 no-underline transition hover:text-emerald-200"
         >
           ← Back

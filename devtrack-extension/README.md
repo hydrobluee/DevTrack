@@ -6,9 +6,10 @@ This is a Vite + React + Tailwind CSS conversion of the original DevTrack extens
 
 - `public/images/` — copied assets from the original extension
 - `src/components/` — reusable UI pieces
-- `src/pages/` — the two pages that mirror the original HTML screens
+- `src/pages/` — extension page components for the popup, weekly summary, and settings flow
 - `popup.html` — extension popup entry
-- `getting_started.html` — summary page entry
+- `getting_started.html` — weekly progress page entry
+- `settings.html` — GitHub setup page entry
 - `manifest.json` — extension manifest
 - `vite.config.js` — multi-page Vite config
 

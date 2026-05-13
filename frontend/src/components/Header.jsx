@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
+import { Bell, ChevronDown } from 'lucide-react';
 import { useUserProfile } from '../context/UserProfileContext';
 
 const Headers = () => {
@@ -11,9 +12,7 @@ const Headers = () => {
   const { profileData } = useUserProfile();
 
   const getUserInitial = () => {
-    if (!profileData || !profileData.name) {
-      return '👤';
-    }
+    if (!profileData?.name) return 'U';
     return profileData.name.charAt(0).toUpperCase();
   };
 
@@ -23,8 +22,10 @@ const Headers = () => {
         setIsDropdownOpen(false);
       }
     };
+
     document.addEventListener('mousedown', handleClickOutside);
     document.addEventListener('touchstart', handleClickOutside);
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('touchstart', handleClickOutside);
@@ -33,64 +34,47 @@ const Headers = () => {
 
   const isActive = (path) => location.pathname === path;
 
-  // Platform data with connection status
   const platforms = [
-    { 
-      id: 'leetcode', 
-      name: 'LeetCode', 
-      connected: !!profileData?.leetcode_username,
-      colorConnected: 'bg-green-400',
-      colorDisconnected: 'bg-red-400'
-    },
-    { 
-      id: 'codeforces', 
-      name: 'Codeforces', 
-      connected: !!profileData?.codeforces_username,
-      colorConnected: 'bg-green-400',
-      colorDisconnected: 'bg-red-400'
-    },
-    { 
-      id: 'codechef', 
-      name: 'CodeChef', 
-      connected: !!profileData?.codechef_username,
-      colorConnected: 'bg-green-400',
-      colorDisconnected: 'bg-red-400'
-    }
+    { id: 'leetcode', name: 'LeetCode', connected: !!profileData?.leetcode_username },
+    { id: 'codeforces', name: 'Codeforces', connected: !!profileData?.codeforces_username },
+    { id: 'codechef', name: 'CodeChef', connected: !!profileData?.codechef_username },
   ];
 
   return (
-    <header className="bg-gradient-to-r from-slate-800 to-gray-900 backdrop-blur-md border-b border-slate-700 shadow-md relative z-50">
-      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        {/* Logo and Title - Now clickable and redirects to dashboard */}
-        <Link to="/dashboard" className="flex items-center space-x-3">
+    <header className="sticky top-0 z-50 border-b border-white/8 bg-[#1a1a1a]/95 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
+        <Link to="/dashboard" className="flex items-center gap-3">
           <motion.div
-            className="flex items-center space-x-3"
+            className="flex items-center gap-3"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 9l3 3-3 3m5 0h3m-11 4h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-            <h1 className="text-2xl font-bold text-green-400 dark:text-green-300">
-              DevTrack
-            </h1>
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#ffa116]/25 bg-[#0f1720] p-1.5 shadow-[0_0_20px_rgba(16,185,129,0.12)]">
+              <img
+                src="/images/devtrack-nobg.png"
+                alt="DevTrack logo"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div>
+              <h1 className="text-xl font-semibold text-white">DevTrack</h1>
+              <p className="text-[10px] uppercase tracking-[0.28em] text-slate-500">Coding Hub</p>
+            </div>
           </motion.div>
         </Link>
 
-        {/* Navigation Menu */}
-        <nav className="hidden md:flex space-x-8 relative z-50">
+        <nav className="hidden items-center gap-8 md:flex">
           <Link
             to="/dashboard"
-            className={`relative group font-medium transition-all duration-300 ${isActive('/dashboard') ? 'text-green-400' : 'text-white hover:text-green-400'}`}
+            className={`relative pb-1 text-sm font-medium transition ${isActive('/dashboard') ? 'text-[#ffa116]' : 'text-slate-300 hover:text-white'}`}
           >
             Dashboard
-            <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full ${isActive('/dashboard') ? 'w-full' : ''}`}></span>
+            <span className={`absolute bottom-0 left-0 h-0.5 bg-[#ffa116] transition-all duration-300 ${isActive('/dashboard') ? 'w-full' : 'w-0'}`}></span>
           </Link>
 
-          {/* Coding Profiles Dropdown */}
-          <div 
-            className="relative" 
+          <div
+            className="relative"
             ref={dropdownRef}
             onMouseEnter={() => {
               setIsDropdownOpen(true);
@@ -105,33 +89,31 @@ const Headers = () => {
           >
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className={`relative group font-medium transition-all duration-300 flex items-center space-x-1 ${
-                isActive('/leetcode') || isActive('/codeforces') || isActive('/codechef') 
-                  ? 'text-green-400' 
-                  : 'text-white hover:text-green-400'
+              className={`relative flex items-center gap-1 pb-1 text-sm font-medium transition ${
+                isActive('/leetcode') || isActive('/codeforces') || isActive('/codechef')
+                  ? 'text-[#ffa116]'
+                  : 'text-slate-300 hover:text-white'
               }`}
             >
               <span>Coding Profiles</span>
-              <motion.span
-                animate={{ rotate: isDropdownOpen ? 180 : 0 }}
-                transition={{ duration: 0.2 }}
-                className="text-xs"
-              >
-                ▼
+              <motion.span animate={{ rotate: isDropdownOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                <ChevronDown className="h-4 w-4" />
               </motion.span>
-              <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full ${
-                isActive('/leetcode') || isActive('/codeforces') || isActive('/codechef') ? 'w-full' : ''
-              }`}></span>
+              <span
+                className={`absolute bottom-0 left-0 h-0.5 bg-[#ffa116] transition-all duration-300 ${
+                  isActive('/leetcode') || isActive('/codeforces') || isActive('/codechef') ? 'w-full' : 'w-0'
+                }`}
+              ></span>
             </button>
 
             <AnimatePresence>
               {isDropdownOpen && (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
-                  className="absolute left-0 mt-3 w-64 bg-gray-800 text-white rounded-xl shadow-2xl z-50 border border-slate-700 overflow-hidden"
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
+                  className="absolute left-0 mt-3 w-64 overflow-hidden rounded-2xl border border-white/10 bg-[#1f1f1f] text-white shadow-2xl"
                   onMouseEnter={() => setIsHoveringDropdown(true)}
                   onMouseLeave={() => {
                     setIsHoveringDropdown(false);
@@ -139,26 +121,22 @@ const Headers = () => {
                   }}
                 >
                   <div className="p-1">
-                    <div className="px-4 py-2 text-xs font-semibold text-cyan-300 uppercase tracking-wider">
+                    <div className="px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                       Connected Platforms
                     </div>
-                    
-                    {platforms.map(platform => (
+
+                    {platforms.map((platform) => (
                       <Link
                         key={platform.id}
                         to={`/${platform.id}`}
-                        className={`flex items-center px-4 py-3 text-sm transition-all duration-200 ${
-                          platform.connected 
-                            ? 'hover:bg-slate-700' 
-                            : 'opacity-80 hover:opacity-100 hover:bg-slate-700/50'
-                        }`}
+                        className="flex items-center px-4 py-3 text-sm transition hover:bg-white/5"
                         onClick={() => setIsDropdownOpen(false)}
                       >
-                        <div className={`w-2 h-2 rounded-full ${
-                          platform.connected ? platform.colorConnected : platform.colorDisconnected
-                        } mr-3`}></div>
+                        <div
+                          className={`mr-3 h-2 w-2 rounded-full ${platform.connected ? 'bg-emerald-400' : 'bg-rose-400'}`}
+                        ></div>
                         <span className="flex-1">{platform.name}</span>
-                        <span className="text-xs text-slate-400">
+                        <span className="text-xs text-slate-500">
                           {platform.connected ? 'Connected' : 'Not Connected'}
                         </span>
                       </Link>
@@ -171,42 +149,35 @@ const Headers = () => {
 
           <Link
             to="/contest"
-            className={`relative group font-medium transition-all duration-300 ${isActive('/contest') ? 'text-green-400' : 'text-white hover:text-green-400'}`}
+            className={`relative pb-1 text-sm font-medium transition ${isActive('/contest') ? 'text-[#ffa116]' : 'text-slate-300 hover:text-white'}`}
           >
             Contests
-            <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full ${isActive('/contest') ? 'w-full' : ''}`}></span>
+            <span className={`absolute bottom-0 left-0 h-0.5 bg-[#ffa116] transition-all duration-300 ${isActive('/contest') ? 'w-full' : 'w-0'}`}></span>
           </Link>
         </nav>
 
-        {/* Right Icons */}
         <motion.div
-          className="flex items-center space-x-5"
+          className="flex items-center space-x-4"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
           <motion.button
-            className="p-2 rounded-full hover:bg-slate-700 transition-all duration-300 shadow-md"
+            className="rounded-2xl border border-white/10 bg-white/5 p-2.5 text-slate-300 transition hover:border-white/20 hover:bg-white/10 hover:text-white"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <svg className="w-5 h-5 text-cyan-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-            </svg>
+            <Bell className="h-5 w-5" />
           </motion.button>
 
-          <motion.div
-            className="relative"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Link 
-              to="/profile" 
-              className="w-9 h-9 rounded-full bg-gradient-to-r from-green-500 to-cyan-400 flex items-center justify-center shadow-lg text-white font-medium"
+          <motion.div className="relative" whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.95 }}>
+            <Link
+              to="/profile"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#ffa116]/35 bg-[#2a2115] text-sm font-semibold text-[#ffd59a]"
             >
               {getUserInitial()}
             </Link>
-            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 rounded-full border-2 border-gray-900"></span>
+            <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-[#1a1a1a] bg-emerald-400"></span>
           </motion.div>
         </motion.div>
       </div>

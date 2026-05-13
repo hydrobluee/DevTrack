@@ -5,31 +5,30 @@ import { FcGoogle } from 'react-icons/fc';
 import { UserAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
       delayChildren: 0.3,
-      staggerChildren: 0.1
-    }
-  }
+      staggerChildren: 0.1,
+    },
+  },
 };
 
 const itemVariants = {
   hidden: { y: 20, opacity: 0 },
   visible: {
     y: 0,
-    opacity: 1
-  }
+    opacity: 1,
+  },
 };
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -43,7 +42,7 @@ export default function SignUp() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
 
     if (name === 'password') {
       checkPasswordStrength(value);
@@ -94,10 +93,10 @@ export default function SignUp() {
   };
 
   const getStrengthColor = () => {
-    if (passwordStrength === 0) return 'bg-gray-200 dark:bg-gray-700';
-    if (passwordStrength <= 2) return 'bg-red-500';
-    if (passwordStrength <= 4) return 'bg-yellow-500';
-    return 'bg-green-500';
+    if (passwordStrength === 0) return 'bg-white/10';
+    if (passwordStrength <= 2) return 'bg-rose-500';
+    if (passwordStrength <= 4) return 'bg-amber-500';
+    return 'bg-emerald-500';
   };
 
   const getStrengthText = () => {
@@ -112,13 +111,13 @@ export default function SignUp() {
     setIsLoading(true);
     setError('');
     setSuccess('');
-  
+
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords don't match");
       setIsLoading(false);
       return;
     }
-  
+
     try {
       await signUpNewUser(formData.email, formData.password);
       setSuccess('Confirm your email-id.....');
@@ -146,20 +145,23 @@ export default function SignUp() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="devtrack-shell flex min-h-screen flex-col justify-center px-4 py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="text-center">
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <a href="/" className="inline-flex items-center">
-              <span className="text-3xl font-bold text-green-600 dark:text-green-400">DevTrack</span>
+          <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5 }}>
+            <a href="/" className="inline-flex items-center gap-3">
+              <span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#ffa116]/25 bg-[#0f1720] p-2 shadow-[0_0_24px_rgba(16,185,129,0.12)]">
+                <img
+                  src="/images/devtrack-nobg.png"
+                  alt="DevTrack logo"
+                  className="h-full w-full object-contain"
+                />
+              </span>
+              <span className="text-3xl font-semibold text-white">DevTrack</span>
             </a>
           </motion.div>
           <motion.h2
-            className="mt-6 text-3xl font-extrabold text-gray-900 dark:text-white"
+            className="mt-6 text-3xl font-semibold text-white"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -167,51 +169,37 @@ export default function SignUp() {
             Create your account
           </motion.h2>
           <motion.p
-            className="mt-2 text-sm text-gray-600 dark:text-gray-400"
+            className="mt-2 text-sm text-slate-400"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
             Already have an account?{' '}
-            <a href="/login" className="font-medium text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300">
+            <a href="/login" className="font-medium text-[#ffa116] transition hover:text-[#ffb84d]">
               Sign in instead
             </a>
           </motion.p>
         </div>
 
-        <motion.div
-          className="mt-8 sm:mx-auto sm:w-full sm:max-w-md"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <div className="bg-white dark:bg-gray-800 py-8 px-4 shadow-lg sm:rounded-lg sm:px-10">
+        <motion.div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md" variants={containerVariants} initial="hidden" animate="visible">
+          <div className="devtrack-card px-4 py-8 sm:px-10">
             {error && (
-              <motion.div
-                className="mb-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 px-4 py-3 rounded-md"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
+              <motion.div className="mb-4 rounded-2xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-rose-100" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
                 {error}
               </motion.div>
             )}
             {success && (
-              <motion.div
-                className="mb-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 px-4 py-3 rounded-md"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
+              <motion.div className="mb-4 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-emerald-100" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
                 {success}
               </motion.div>
             )}
 
-            {/* Google Sign In Button */}
             <motion.div variants={itemVariants}>
               <button
                 type="button"
                 onClick={handleGoogleSignIn}
                 disabled={isLoading}
-                className="w-full flex items-center justify-center gap-2 py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none transition duration-200"
+                className="devtrack-button-secondary w-full gap-2 text-sm"
               >
                 <FcGoogle className="h-5 w-5" />
                 Continue with Google
@@ -220,23 +208,21 @@ export default function SignUp() {
 
             <div className="relative my-6">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
+                <div className="w-full border-t border-white/10"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
-                  Or continue with email
-                </span>
+                <span className="bg-[#1a1a1a] px-2 text-slate-500">Or continue with email</span>
               </div>
             </div>
 
             <motion.form className="space-y-6" onSubmit={handleSubmit} variants={containerVariants}>
               <motion.div variants={itemVariants}>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label htmlFor="email" className="block text-sm font-medium text-slate-200">
                   Email address
                 </label>
-                <div className="mt-1 relative rounded-md shadow-sm">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Mail className="h-5 w-5 text-gray-400" />
+                <div className="relative mt-1 rounded-md shadow-sm">
+                  <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                    <Mail className="h-5 w-5 text-slate-500" />
                   </div>
                   <input
                     id="email"
@@ -246,36 +232,36 @@ export default function SignUp() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-Green-500 focus:border-Green-500 dark:text-white sm:text-sm transition-colors duration-200"
+                    className="devtrack-input pl-10"
                     placeholder="you@example.com"
                   />
                 </div>
               </motion.div>
 
               <motion.div variants={itemVariants}>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label htmlFor="password" className="block text-sm font-medium text-slate-200">
                   Password
                 </label>
-                <div className="mt-1 relative rounded-md shadow-sm">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Lock className="h-5 w-5 text-gray-400" />
+                <div className="relative mt-1 rounded-md shadow-sm">
+                  <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                    <Lock className="h-5 w-5 text-slate-500" />
                   </div>
                   <input
                     id="password"
                     name="password"
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                     autoComplete="new-password"
                     required
                     value={formData.password}
                     onChange={handleChange}
-                    className="block w-full pl-10 pr-10 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-Green-500 focus:border-Green-500 dark:text-white sm:text-sm transition-colors duration-200"
-                    placeholder="••••••••"
+                    className="devtrack-input pl-10 pr-10"
+                    placeholder="........"
                   />
-                  <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-3">
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="text-gray-400 hover:text-gray-500 focus:outline-none"
+                      className="text-slate-500 transition hover:text-slate-300 focus:outline-none"
                     >
                       {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                     </button>
@@ -284,11 +270,11 @@ export default function SignUp() {
 
                 {formData.password && (
                   <div className="mt-2">
-                    <div className="flex items-center justify-between mb-1">
-                      <div className="text-xs font-medium text-gray-500 dark:text-gray-400">Password strength:</div>
-                      <div className="text-xs font-medium text-gray-700 dark:text-gray-300">{getStrengthText()}</div>
+                    <div className="mb-1 flex items-center justify-between">
+                      <div className="text-xs font-medium text-slate-500">Password strength:</div>
+                      <div className="text-xs font-medium text-slate-300">{getStrengthText()}</div>
                     </div>
-                    <div className="h-2 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
                       <div
                         className={`h-full ${getStrengthColor()} transition-all duration-300`}
                         style={{ width: `${(passwordStrength / 5) * 100}%` }}
@@ -298,11 +284,11 @@ export default function SignUp() {
                       {passwordFeedback.map((item, index) => (
                         <div key={index} className="flex items-center text-xs">
                           {item.passed ? (
-                            <CheckCircle className="h-4 w-4 text-green-500 mr-1" />
+                            <CheckCircle className="mr-1 h-4 w-4 text-emerald-400" />
                           ) : (
-                            <X className="h-4 w-4 text-gray-400 mr-1" />
+                            <X className="mr-1 h-4 w-4 text-slate-500" />
                           )}
-                          <span className={item.passed ? 'text-green-600 dark:text-green-400' : 'text-gray-500 dark:text-gray-400'}>
+                          <span className={item.passed ? 'text-emerald-300' : 'text-slate-500'}>
                             {item.text}
                           </span>
                         </div>
@@ -313,26 +299,26 @@ export default function SignUp() {
               </motion.div>
 
               <motion.div variants={itemVariants}>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-slate-200">
                   Confirm Password
                 </label>
-                <div className="mt-1 relative rounded-md shadow-sm">
+                <div className="relative mt-1 rounded-md shadow-sm">
                   <input
                     id="confirmPassword"
                     name="confirmPassword"
-                    type={showConfirmPassword ? "text" : "password"}
+                    type={showConfirmPassword ? 'text' : 'password'}
                     autoComplete="new-password"
                     required
                     value={formData.confirmPassword}
                     onChange={handleChange}
-                    className="block w-full pl-3 pr-10 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-Green-500 focus:border-Green-500 dark:text-white sm:text-sm transition-colors duration-200"
+                    className="devtrack-input pr-10"
                     placeholder="Re-enter password"
                   />
-                  <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-3">
                     <button
                       type="button"
                       onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                      className="text-gray-400 hover:text-gray-500 focus:outline-none"
+                      className="text-slate-500 transition hover:text-slate-300 focus:outline-none"
                     >
                       {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                     </button>
@@ -341,11 +327,7 @@ export default function SignUp() {
               </motion.div>
 
               <motion.div variants={itemVariants}>
-                <button
-                  type="submit"
-                  disabled={isLoading}
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-200"
-                >
+                <button type="submit" disabled={isLoading} className="devtrack-button-primary w-full text-sm">
                   {isLoading ? 'Creating Account...' : 'Sign Up'}
                 </button>
               </motion.div>
